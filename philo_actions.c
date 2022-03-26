@@ -6,24 +6,11 @@
 /*   By: cerdelen <cerdelen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:16:14 by cerdelen          #+#    #+#             */
-/*   Updated: 2022/03/25 21:00:00 by cerdelen         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:43:41 by cerdelen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*ft_die(t_philo *philo)
-{
-	long long	time;
-
-	if (philo->t_ptr->end_of_meal == false)
-	{
-		philo->t_ptr->end_of_meal = true;
-		time = ft_get_time_ms() - philo->t_ptr->t_start;
-		printf("%lld %d died\n", time, philo->name);
-	}
-	return (NULL);
-}
 
 void	ft_eat(t_philo *philo)
 {
