@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_arg.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cerdelen <cerdelen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/22 22:12:16 by cerdelen          #+#    #+#             */
+/*   Updated: 2022/03/22 22:12:17 by cerdelen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	check_arg_value_part2(char *nbr, int i)
@@ -55,9 +67,9 @@ int	check_if_only_dig(char *s1)
 	int	i;
 
 	i = 0;
-	while(s1[i] != 0)
+	while (s1[i] != 0)
 	{
-		if(!ft_isdigit(s1[i]))
+		if (!ft_isdigit(s1[i]))
 			return (0);
 		i++;
 	}
@@ -67,34 +79,22 @@ int	check_if_only_dig(char *s1)
 int	check_arguments(int argc, char **argv)
 {
 	int	i;
-	
+
 	i = 1;
-	if(argc != 5 && argc != 6)
+	if (argc != 5 && argc != 6)
 	{
-		if(argc < 5)
-			write(2, "Not enough Arguments!\n", 22);
+		if (argc < 5)
+			return (write(2, "Not enough Arguments!\n", 22));
 		else
-			write(2, "Too many Arguments!\n", 20);
-		return (0);
+			return (write(2, "Too many Arguments!\n", 20));
 	}
-	while(i < argc)
+	while (i < argc)
 	{
-		if(!check_if_only_dig(argv[i]))
-		{
-			write(2, "Arguments contain non digit Characters!\n", 40);
-			return(0);
-		}
+		if (!check_if_only_dig(argv[i]))
+			return (write(2, "Arguments contain non digit Characters!\n", 40));
+		if (!check_arg_value(argv[i]))
+			return (write(2, "Argument is bigger than an int!\n", 33));
 		i++;
 	}
-	i = 1;
-	while(i < argc)
-	{
-		if(!check_arg_value(argv[i]))
-		{
-			write(2, "Argument is bigger than an int!\n", 33);
-			return(0);
-		}
-		i++;
-	}
-	return(1);
+	return (0);
 }

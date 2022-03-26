@@ -6,35 +6,29 @@
 #    By: cerdelen <cerdelen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/04 21:02:11 by Cerdelen          #+#    #+#              #
-#    Updated: 2022/03/13 20:44:57 by cerdelen         ###   ########.fr        #
+#    Updated: 2022/03/25 21:02:21 by cerdelen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wextra -Wall -Werror
+CFLAGS = -Wextra -Wall -Werror -pthread
 
 NAME = philo
 
 AR = ar rcs
 
-SRCS = 	main.c setup_struct.c check_arg.c start_philosophers.c
+SRCS = 	philo_actions_2.c routine.c main.c check_arg.c helper_func.c init_forks.c  init_philos.c  philo_actions.c  set_table.c ft_atoi.c  ft_bzero.c  ft_calloc.c  ft_isdigit.c  ft_strlen.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(OBJS)
-	$(MAKE) -C Libft	
-	$(AR) $(NAME).a $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) philo.a ./Libft/libft.a
-
-$(OBJS):
-	$(CC) $(CFLAGS) -c $(SRCS)
+all: 
+	$(CC) $(CFLAGS) -o  $(NAME) $(SRCS)
 
 clean:
-	$(MAKE) fclean -C Libft
-	$(RM) $(OBJS) $(NAME).a
+	
 
-fclean: clean
+fclean:
 	$(RM) $(NAME) 
 
 re: fclean all
